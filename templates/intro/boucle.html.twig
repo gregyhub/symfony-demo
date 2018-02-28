@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Bonjour !{{ log }}</h1>
+    
+    {% for indice, OneUser in user %}
+             <li>{{ indice }} : {{ OneUser }}</li>
+    {% endfor %}
+
+{% endblock %}

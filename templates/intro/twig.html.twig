@@ -1,0 +1,74 @@
+{# surcharge de la vue base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# définir une variable #}
+{% set bonjour = 'hello' %}
+
+
+{# remplace le block body de base.html #}
+{% block body %}
+    
+    {# pour afficher une variable #}
+    <p>{{ bonjour }}</p>
+    
+    {# pour tester une variable #}
+    {{ dump(bonjour) }}
+    {% if bonjour == 'hello' %}
+        <p>la variable  bonjour vaut "hello"</p>
+    {% endif %}
+    
+    {% set int = 3 %}
+    {% if int >2 %}
+        <p>int est suppérieur à 2</p>
+    {% elseif int < 1 %}
+        <p>int est inferieur à 1</p>
+        
+    {% else %}
+        <p>int vaut 1 ou 2</p>
+    {% endif %}
+    
+    {# équivalent au isset() #}
+    {% if int is defined %}
+        <p>int existe</p>
+    {% endif %}
+    {# équivalent au !isset() #}
+    {% if int is not defined %}
+        <p>int not existe</p>
+    {% endif %}
+    
+    
+    {# équivalent au is_null() #}
+    {% if int is null %}
+        <p>int vaut null</p>
+    {% endif %}
+    
+    {# équivalent au empty() #}
+    {% if int is empty %}
+        <p>int est null</p>
+    {% endif %}
+
+    
+    {# équivalent au && idem avec or #}
+    {% if int > 2 and bonjour=='hello' %}
+        <p>pouette</p>
+    {% endif %}
+
+    
+    {# déclaration d'un tableau #}
+    {% set pronoms = ['je','tu','il'] %}
+    {%for pronom in pronoms %}
+        <li>{{ pronom }}</li>
+    {% endfor %}
+    {%for indice, pronom in pronoms %}
+        <li>{{ indice }} : {{ pronom }}</li>
+    {% endfor %}
+    
+    
+    {# équivalent de in_array() -> retourne vrai ou faux #}
+    {% if int in [1,2,3,4] %}
+        <p>il a bien trouvé la position dans le tableau</p>
+    {% endif %}
+
+    {{ dump(pronoms[0]) }}
+    {{ dump(pronoms.0) }}
+{% endblock %}

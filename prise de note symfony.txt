@@ -1,0 +1,86 @@
+dans le terminal 
+> composer create-project symfony/website-skeleton symfony-demo : editeur symfony | website-skeleton c'est un composant de symfony avec la majorit� des compsants d�j� pr�vu dedans.skeleton c'est un micro framework coquille vide | le nom du projet
+
+a la fin de l'install :
+ What's next?
+
+
+  * Run your application:
+    1. Change to the project directory
+    2. Execute the php -S 127.0.0.1:8000 -t public command;
+    3. Browse to the http://localhost:8000/ URL.
+
+       Quit the server with CTRL-C.
+       Run composer require server --dev for a better web server.
+
+  * Read the documentation at https://symfony.com/doc
+
+
+ Database Configuration
+
+
+  * Modify your DATABASE_URL config in .env
+
+  * Configure the driver (mysql) and
+    server_version (5.7) in config/packages/doctrine.yaml
+
+
+ How to test?
+
+
+  * Write test cases in the tests/ folder
+  * Run php bin/phpunit
+
+puis 
+dans le rep qu'on vient de creer
+	composer require server --dev (server c'est le raccourcis de  symfony/web-server-	bundle)
+______
+
+pour r�cup le projet sur git, composer insall pour installer toutes les lib qui ne sont pas sur git.
+______________________________
+rep template : les fichiers .twig pour les vues
+rep src : c'est le coeur 
+	entity c'est l'ORM donc pour le modèle
+	repsitory : requeteage par rapport au class du modèle
+	controller : le controller
+rep public : index.php c'est le seul point d'entr�e de l'appli puis redirige. il faudra rooter le point d'entr�e sur ce pointer sur ce repertoire et non pas le rep racine du projet
+rep config : toute la config de l'appli en .yaml
+	yaml> pas d'accolade. c'est l'indentation qui d�finit la h�rarchie.
+rep bin : phpunit pour les test unitaire et le console pour utiliser les ligne de commande
+rep assets : pour stocker les css js
+rep racine > .env .env.dist > le dist sert a ajouter des variables d'environnement qui sert de modele pour creer le .env. Ce fichier dist est versionn�.
+
+______________
+
+un bundle c'est un composant
+
+_________________
+CONSOLE |depuis l'invit de commande il faut ajouter php bin/console + le nom de la commde
+depuis netbean clik droit symfony > console > server:run
+depuis la console externe : php bin/console server:run
+make:controller intro > va creer un controller IntroController.php + dans template intro/index.html.twig : php bin/console make:controller intro
+doctrine:schema:validate
+
+_____________________
+VUE
+dans les vue il y a 
+{% bloc / if / foreach %}
+{{ maVar }} affichage de la variable
+{# commentaires #}
+/** */> commentaire de documentation -> ne concerne pas twig
+{% set bonjour = 'hello' %} > pour d�finir une variable � la vol� dans le template (par exemple i pour une boucle while
+
+
+
+
+__________________________
+NAMESPACE
+
+
+______________________
+DOCTRINE / BDD
+modifier le fichier env pour adapter > DATABASE_URL=mysql://root@127.0.0.1:3306/symfony-demo?charset=UTF8
+puis dans la console > doctrine:schema:validate
+puis dans la console > make:entity person (nom de table) >  création de 2 fichier src/Entity/Person.php et  src/Repository/PersonRepository.php
+puis dans la console > doctrine:schema:update --dump-sql >  le dump-sql ne fait que afficher la requete sans l'executer
+puis dans la console > doctrine:schema:update --force > pour forcer l'execution de la commande > va creer la table

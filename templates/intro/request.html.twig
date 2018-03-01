@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+   
+    <form action="" method="post">
+       <input type="text" name="test" />
+       <button type="submit" name="clic" value="pouette">validation</button>
+        
+    </form>
+    
+    {{ dump(app.getRequest().getMethod('clic')) }} {# dans twig, on appel les methodes avec le "." comme en JS #}
+   
+    {{ dump(app.request.method) }} {# en notation courte : #} {# fonction car il va chercher getRequest en premier. pour les autres methode, il faut les nommer correctement #}
+    {{ dump(app) }}
+
+{% endblock %}

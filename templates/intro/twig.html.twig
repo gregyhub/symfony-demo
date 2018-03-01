@@ -71,4 +71,45 @@
 
     {{ dump(pronoms[0]) }}
     {{ dump(pronoms.0) }}
+    
+    {%for test in [] %}
+        <li>{{ test }}</li>
+    {% else %}  {# possible de faire un else apres le for #}
+        <p>le tableauest vide</p>
+    {% endfor %}
+    
+    {% set users = ['julien', 'thomas', 'laurence']%}
+    {%for user in users %}
+        {{ dump(loop.index) }}
+        {# variable accessible quand on est dans uneboucle. #}
+        {# le loop.index donne en 1er index 1 et non pas 0 #}
+        {# le loot.index0 existe aussi pour démarer l'index à 0#}
+        {% if loop.first %} {# idem avec le .last #}
+            <p>premier tour</p>
+        {% endif %}
+        {% if loop.index is odd %} {# odd pour impaire / event pour odd #}
+            <p>le tour <strong>{{ loop.index }}</strong> de boucle est impair</p>
+        {% endif %}
+        <li>{{ user }}</li>
+    {% endfor %}
+    
+    
+    {% set bouh = 'bouh' %}
+    {{ bouh ~ ' ! ' ~ bouh }}
+    
+    <p>{{ bouh|upper }}</p> {# pour mettre en maj #}
+    
+    <p>{{ emtptyVar|default('emptyVar est vide') }}</p>
+    
+    {% set html = '<p>du html</p>' %}
+    {{ html }} {# par defaut applique un htmlentities pour échaper les balises html #}
+    {{ html|raw }} {# pour interpreter les baliser sans les echapper #}
+    
+    {{ now|date('d/m/Y') }} {# équivalent au now->format() de l'objet dateTime en php #}
+    
+    {# {% include 'intro/included.html.twig' %} #}
+    {# only pour ne pas passer les variables au fichier inclus donc la variable bouh n'existera pas dans le fchier included #}
+    {# {% include 'intro/included.html.twig' only %} #}
+    {% include 'intro/included.html.twig' with {foo: 'nouvelle variable'} %} {# pour envoyerune variable à la page #}
+    {% include 'intro/included.html.twig' with {foo: 'nouvelle variable', bouh: bouh} only %} {# pour envoyer uniquement ces 2 variables au fichier inclus #}
 {% endblock %}

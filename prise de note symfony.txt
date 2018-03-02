@@ -80,7 +80,8 @@ NAMESPACE
 ______________________
 DOCTRINE / BDD
 modifier le fichier env pour adapter > DATABASE_URL=mysql://root@127.0.0.1:3306/symfony-demo?charset=UTF8
-puis dans la console > doctrine:schema:validate
+puis dans la console > doctrine:schema:validate > faire le liens la bdd et la config
+
 puis dans la console > make:entity person (nom de table) >  création de 2 fichier src/Entity/Person.php et  src/Repository/PersonRepository.php
 puis dans la console > doctrine:schema:update --dump-sql >  le dump-sql ne fait que afficher la requete sans l'executer
 puis dans la console > doctrine:schema:update --force > pour forcer l'execution de la commande > va creer la table

@@ -1,0 +1,70 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   
+    <h1>Page de recherche</h1>
+    <form action="" method="post">
+        <p> <label for="email">email</label>
+            <input type="text" id="email" name="email" /></p>
+        <p><label for="lastname">nom</label>
+            <input type="text" id="lastname" name="lastname" /></p>
+        <input type="submit" name="rechercher" value="rechercher" />
+    </form>
+    {% if person is not null %}
+        <table border="1px">
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>les 2</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+        </tr>
+       
+            <tr>
+                <td>{{ person.getId() }}</td>
+                <td>{{ person.firstname }}</td>
+                <td>{{ person.lastname }}</td>
+                <td>{{ person.fullname }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.birthdate|date('d/m/Y')}}</td>
+            </tr>
+        </table>
+    {% endif %}   
+    {% if persons is not null %}
+     <table border="1px">
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>les 2</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+        </tr>
+        {% for oneperson in persons %}
+            <tr>
+                <td><a href="{{ path('app_person_detail', {id: oneperson.id}) }}">{{ oneperson.getId() }}</a></td>
+                <td>{{ oneperson.firstname }}</td>
+                <td>{{ oneperson.lastname }}</td>
+                <td>{{ oneperson.fullname }}</td>
+                <td>{{ oneperson.email }}</td>
+                <td>{{ oneperson.birthdate|date('d/m/Y')}}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+            
+        
+    </table>
+    
+  
+</div>
+{% endblock %}
